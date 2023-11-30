@@ -1,36 +1,30 @@
 import { StyleSheet, Text, View, Image } from "react-native";
+import { format } from "date-fns";
 
 import Rodape from "../../components/Rodape";
 import TimerComponent from "../../components/Timer";
 
-const Timer = () =>{
+const Calendary = () =>{
+    const today = new Date();
+    const dayOfWeek = format(today, "EEEE, MMM d");
+
     return(
         <View style={ layout.container }>
             <View style={ layout.subContainer }>
                 <View style={ layout.Flex }>
-                    <Text style={ custom.title }>Timer</Text>
-                    <View style={ layout.Flex }>
-                        <Image
-                            source={ require("../../../assets/app/Bookmark.png") }
-                            style={ [layout.icon, custom.iconLeft] }
-                        />
-                        <Image
-                            source={ require("../../../assets/app/ExternalLink.png") }
-                            style={ [layout.icon, custom.iconLeft] }
-                        />
-                        <Image
-                            source={ require("../../../assets/app/Settings.png") }
-                            style={ [layout.icon, custom.iconLeft] }
-                        />
-                    </View>
+                    <Text style={ custom.title }>Calendary</Text>
+                    <Image
+                        source={ require("../../../assets/app/Settings.png") }
+                        style={ [layout.icon, custom.iconLeft] }
+                    />
                 </View>
                 <View style={ layout.Flex }>
-                    <Text style={ layout.Text }>List View</Text>
+                    <Text style={ layout.Text }>{dayOfWeek}</Text>
                     <Text style={ layout.Text }>0:00:00</Text>
                 </View>
             </View>
             <TimerComponent />
-            <Rodape screenSelect="timer" />
+            <Rodape screenSelect="calendary" />
         </View>
     );   
 }
@@ -79,4 +73,4 @@ const custom = StyleSheet.create({
     },
 });
 
-export default Timer;
+export default Calendary;
