@@ -5,19 +5,7 @@ const TimerComponent = () =>{
         <ScrollView>
             <View style={ [ layout.content, layout.subContainer ] }>
                 <Text style={ layout.Text }>
-                    Your Activity
-                </Text>
-                <Text style={ layout.Text }>
-                    Your Activity
-                </Text>
-                <Text style={ layout.Text }>
-                    Your Activity
-                </Text>
-                <Text style={ layout.Text }>
-                    Your Activity
-                </Text>
-                <Text style={ layout.Text }>
-                    Your Activity
+                    Started
                 </Text>
             </View>
         </ScrollView>

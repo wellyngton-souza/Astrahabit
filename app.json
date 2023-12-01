@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Astrahabit",
-    "slug": "Astrahabit",
+    "slug": "astrahabit",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b4ea76c6-e8c7-46e3-bc92-f415aa7ebbab"
+      }
+    },
+    "owner": "wafer101"
   }
 }

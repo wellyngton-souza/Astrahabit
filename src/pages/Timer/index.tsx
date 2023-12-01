@@ -1,9 +1,14 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import Rodape from "../../components/Rodape";
 import TimerComponent from "../../components/Timer";
 
+import { StackTypes } from "../../routes";
+
 const Timer = () =>{
+    const navigation = useNavigation<StackTypes>();
+
     return(
         <View style={ layout.container }>
             <View style={ layout.subContainer }>
@@ -18,10 +23,14 @@ const Timer = () =>{
                             source={ require("../../../assets/app/ExternalLink.png") }
                             style={ [layout.icon, custom.iconLeft] }
                         />
-                        <Image
-                            source={ require("../../../assets/app/Settings.png") }
-                            style={ [layout.icon, custom.iconLeft] }
-                        />
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate("Config")}
+                        >
+                            <Image
+                                source={ require("../../../assets/app/Settings.png") }
+                                style={ [layout.icon, custom.iconLeft] }
+                            />
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <View style={ layout.Flex }>
