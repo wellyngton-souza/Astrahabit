@@ -28,7 +28,7 @@ const Login = () =>{
                         <Text style={ layout.Text }>Facebook</Text>
                     </View>
                 </TouchableOpacity>
-                <Text style={ layout.Text }>Leia os nossos termos</Text>
+                <Text style={ layout.TextMid }>Leia os nossos termos</Text>
             </View>
         </View>
     );   
@@ -49,6 +49,10 @@ const layout = StyleSheet.create({
     },
     Text: {
         fontSize: 21,
+        fontWeight: "bold"
+    },
+    TextMid: {
+        fontSize: 17,
         fontWeight: "bold"
     },
     Flex: {

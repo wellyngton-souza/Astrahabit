@@ -129,7 +129,7 @@ const custom = StyleSheet.create({
         marginLeft: 10
     },
     scrollData: {
-        marginHorizontal: 15,
+        marginHorizontal: 35,
         minHeight: 120,
         display: "flex",
         flexDirection: "column",
@@ -143,7 +143,7 @@ const custom = StyleSheet.create({
     scrollTextSelected: {
         fontSize: 18,
         fontWeight: "bold",
-        backgroundColor: "orange",
+        color: "orange",
         marginBottom: 35
     },
 });

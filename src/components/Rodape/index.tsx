@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Image, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { StackTypes } from "../../routes";
@@ -29,10 +29,15 @@ const Rodape: React.FC<telaSelecionada> = ({ screenSelect }) => {
                     style={[layout.icon, { tintColor: screenSelect === "timer" ? "black" : "gray" }]}
                 />
             </TouchableOpacity>
-            <Image
-                source={require("../../../assets/app/BarChart.png")}
-                style={[layout.icon, { tintColor: "gray" }]}
-            />
+            <TouchableOpacity
+                onPress={() => navigation.navigate("Statistics")}
+            >
+                <Image
+                    source={require("../../../assets/app/BarChart.png")}
+                    style={[layout.icon, { tintColor: screenSelect === "Statistics" ? "black" : "gray" }]}
+                />
+            </TouchableOpacity>
+            <Text>Version: 0.02</Text>
         </View>
     );
 }
