@@ -21,8 +21,8 @@ const CalendaryComponent: React.FC<diaType> = ({ diaSelecionado }) =>{
             <View style={ [ layout.content, layout.subContainer ] }>
                 {
                     hours.map((dia, index)=>(
-                        <View style={ layout.Flex }>
-                            <Text key={index} style={ layout.Text }>
+                        <View key={index} style={ layout.Flex }>
+                            <Text style={ layout.Text }>
                                 {dia.toString()}{Number(dia) < 13 ? "AM" : "PM"}
                             </Text>
                             <View style={ custom.separator }></View>

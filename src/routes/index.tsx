@@ -5,6 +5,7 @@ import Calendary from "../pages/Calendary";
 import Login from "../pages/Login";
 import Config from "../pages/Config";
 import Statistics from "../pages/Statistics";
+import Terms from "../pages/Terms";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,6 +15,7 @@ type StackNavigation = {
     Login: undefined;
     Config: undefined;
     Statistics: undefined;
+    Terms: undefined;
 }
 
 export type StackTypes = NativeStackNavigationProp<StackNavigation>;
@@ -32,6 +34,7 @@ const Routes = () => {
             <Stack.Screen name="Login" options={{ headerShown: false }} component={Login} />
             <Stack.Screen name="Config" options={{ headerShown: false }} component={Config} />
             <Stack.Screen name="Statistics" options={{ headerShown: false }} component={Statistics} />
+            <Stack.Screen name="Terms" options={{ headerShown: false }} component={Terms} />
         </Stack.Navigator>
     )
 }

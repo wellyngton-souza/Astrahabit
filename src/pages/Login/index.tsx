@@ -2,35 +2,59 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { StackTypes } from "../../routes";
+import { useState } from "react";
 
 const Login = () =>{
     const navigation = useNavigation<StackTypes>();
 
+    const [loading, setLoading] = useState(false);
+
+    const loadingStart = () =>{
+        setLoading(true);
+
+        setTimeout(() => {
+            navigation.navigate("Timer");
+        }, 2000);
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 2500);
+    }
+
     return(
-        <View style={ layout.container }>
-            <View style={ custom.boxTitle }></View>
-            <View style={ layout.subContainer }>
-                <Text style={ custom.title }>Login</Text>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate("Timer")}
-                >
-                    <View style={ custom.button }>
-                        <Text style={ layout.Text }>Google</Text>
+        <>
+            {
+                loading ?
+                    <View style={ [layout.container, { alignItems: "center", justifyContent: "center" }] }>
+                        <Text style={ custom.title }>Carregando</Text>
                     </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <View style={ custom.button }>
-                        <Text style={ layout.Text }>Apple</Text>
+                :
+                <View style={ layout.container }>
+                    <View style={ custom.boxTitle }></View>
+                    <View style={ layout.subContainer }>
+                        <Text style={ custom.title }>Login</Text>
+                        <TouchableOpacity
+                            onPress={loadingStart}
+                        >
+                            <View style={ custom.button }>
+                                <Text style={ layout.Text }>Google</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <View style={ custom.button }>
+                                <Text style={ layout.Text }>Apple</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <View style={ custom.button }>
+                                <Text style={ layout.Text }>Facebook</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <Text style={ layout.TextMid } onPress={() => navigation.navigate("Terms")} >Leia os nossos termos</Text>
                     </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <View style={ custom.button }>
-                        <Text style={ layout.Text }>Facebook</Text>
-                    </View>
-                </TouchableOpacity>
-                <Text style={ layout.TextMid }>Leia os nossos termos</Text>
-            </View>
-        </View>
+                </View>
+            }
+        </>
     );   
 }
 
@@ -89,7 +113,7 @@ const custom = StyleSheet.create({
         paddingVertical: 18,
         marginBottom: 35,
         backgroundColor: "#eeeeee",
-        borderRadius: 8
+        borderRadius: 3
     }
 });
 

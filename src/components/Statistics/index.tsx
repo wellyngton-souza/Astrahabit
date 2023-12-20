@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView, Dimensions } from "react-native";
+import { LineChart, PieChart, ContributionGraph } from "react-native-chart-kit";
 
 const StatisticsComponent = () =>{
     return(
@@ -7,9 +8,100 @@ const StatisticsComponent = () =>{
                 <Text style={ layout.Text }>
                     Your Activity
                 </Text>
-                <View style={ layout.circle }>
-                    <View style={ layout.circleCenter }></View>
-                </View>
+                <LineChart
+                    data={{
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                        datasets: [
+                            {
+                                data: [830, 762, 810, 700, 723, 493, 677, 641, 509, 213, 335, 198, 29]
+                            },
+                        ],
+                    }}
+                    width={Dimensions.get('window').width - 70}
+                    height={200}
+                    yAxisLabel={'$'}
+                    chartConfig={{
+                        backgroundGradientFrom: '#fff',
+                        backgroundGradientTo: '#fff',
+                        color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`
+                    }}
+                />
+                <PieChart
+                    data={
+                        [
+                            {
+                              name: "Seoul",
+                              population: 21,
+                              color: "rgba(131, 167, 234, 1)",
+                              legendFontColor: "#7F7F7F",
+                              legendFontSize: 15
+                            },
+                            {
+                              name: "Toronto",
+                              population: 28,
+                              color: "#F00",
+                              legendFontColor: "#7F7F7F",
+                              legendFontSize: 15
+                            },
+                            {
+                              name: "Beijing",
+                              population: 52,
+                              color: "red",
+                              legendFontColor: "#7F7F7F",
+                              legendFontSize: 15
+                            },
+                            {
+                              name: "New York",
+                              population: 85,
+                              color: "#449999",
+                              legendFontColor: "#7F7F7F",
+                              legendFontSize: 15
+                            },
+                            {
+                              name: "Moscow",
+                              population: 11,
+                              color: "rgb(0, 0, 255)",
+                              legendFontColor: "#7F7F7F",
+                              legendFontSize: 15
+                            }
+                        ]
+                    }
+                    width={Dimensions.get('window').width - 70}
+                    height={200}
+                    chartConfig={{
+                        color: (opacity = 3) => `rgba(255, 255, 255, ${opacity})`
+                    }}
+                    accessor="population"
+                    backgroundColor="transparent"
+                    paddingLeft="15"
+                    absolute
+                />
+                <ContributionGraph
+                    values={
+                        [
+                            { date: "2017-01-02", count: 1 },
+                            { date: "2017-01-03", count: 2 },
+                            { date: "2017-01-04", count: 3 },
+                            { date: "2017-01-05", count: 4 },
+                            { date: "2017-01-06", count: 5 },
+                            { date: "2017-01-30", count: 2 },
+                            { date: "2017-01-31", count: 3 },
+                            { date: "2017-03-01", count: 2 },
+                            { date: "2017-04-02", count: 4 },
+                            { date: "2017-03-05", count: 2 },
+                            { date: "2017-02-30", count: 4 }
+                        ]
+                    }
+                    endDate={new Date("2017-04-01")}
+                    numDays={105}
+                    width={Dimensions.get('window').width - 70}
+                    height={220}
+                    chartConfig={{
+                        backgroundGradientFrom: '#fff',
+                        backgroundGradientTo: '#fff',
+                        color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`
+                    }}
+                />
             </View>
         </ScrollView>
     );
