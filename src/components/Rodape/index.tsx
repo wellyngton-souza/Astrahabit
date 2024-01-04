@@ -37,7 +37,7 @@ const Rodape: React.FC<telaSelecionada> = ({ screenSelect }) => {
                     style={[layout.icon, { tintColor: screenSelect === "Statistics" ? "black" : "gray" }]}
                 />
             </TouchableOpacity>
-            <Text>Version: 0.03</Text>
+            <Text>Version: 0.04</Text>
         </View>
     );
 }

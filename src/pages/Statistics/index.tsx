@@ -39,6 +39,7 @@ const layout = StyleSheet.create({
     },
     subContainer: {
         padding: 35,
+        paddingBottom: 0,
         borderBottomWidth: 1,
         borderBottomColor: "black",
     },

@@ -26,7 +26,7 @@ const ScheduledDate: React.FC<ScheduledDateProps> = ({ name, color }) =>{
                 >
                     <Image
                         source={ require("../../../assets/app/Diamonds.png") }
-                        style={ [layout.icon, layout.iconLeft, { tintColor: taskOpen ? "blue" : "black" }] }
+                        style={ [layout.icon, layout.iconLeft, { tintColor: taskOpen ? "#FF006670" : "black" }] }
                     />
                 </TouchableOpacity>
             </View>
@@ -79,7 +79,7 @@ const layout = StyleSheet.create({
     color: {
         width: 35,
         marginLeft: 17,
-        borderRadius: 180,
+        borderRadius: 6,
         aspectRatio: 1
     },
     task: {

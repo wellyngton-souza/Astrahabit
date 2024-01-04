@@ -19,7 +19,7 @@ const Calendary = () =>{
     const getWeekDays = () => {
         const today = new Date();
 
-        const pastDays = Array.from({ length: 3 }, (_, i) => {
+        const pastDays = Array.from({ length: 6 }, (_, i) => {
             const date = new Date(today);
             date.setDate(today.getDate() - (i + 1));
             return {
@@ -29,7 +29,7 @@ const Calendary = () =>{
             };
         }).reverse();
         
-        const futureDays = Array.from({ length: 3 }, (_, i) => {
+        const futureDays = Array.from({ length: 6 }, (_, i) => {
             const date = new Date(today);
             date.setDate(today.getDate() + i + 1);
             return {
@@ -67,6 +67,7 @@ const Calendary = () =>{
                 <FlatList
                     horizontal
                     data={data}
+                    style={{ marginHorizontal: 35 }}
                     renderItem={({ item }) => (
                         <View style={ custom.scrollData }>
                             <Text>{item.day.substring(0, 3)}</Text>
@@ -129,7 +130,7 @@ const custom = StyleSheet.create({
         marginLeft: 10
     },
     scrollData: {
-        marginHorizontal: 35,
+        marginHorizontal: 15,
         minHeight: 120,
         display: "flex",
         flexDirection: "column",

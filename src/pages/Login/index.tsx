@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { StackTypes } from "../../routes";
@@ -32,6 +32,12 @@ const Login = () =>{
                 <View style={ layout.container }>
                     <View style={ custom.boxTitle }></View>
                     <View style={ layout.subContainer }>
+                        <View style={ custom.center }>
+                            <Image
+                                source={ require("../../../assets/app/Astrabit_icon.png") }
+                                style={ layout.icon }
+                            />
+                        </View>
                         <Text style={ custom.title }>Login</Text>
                         <TouchableOpacity
                             onPress={loadingStart}
@@ -86,8 +92,8 @@ const layout = StyleSheet.create({
         justifyContent: "space-between"
     },
     icon: {
-        width: 35,
-        height: 35
+        width: 230,
+        height: 230
     },
     content: {
         flexGrow: 1,
@@ -102,8 +108,9 @@ const custom = StyleSheet.create({
         fontWeight: "bold",
         marginVertical: 20
     },
-    iconLeft: {
-        marginLeft: 10
+    center: {
+        display: "flex",
+        alignItems: "center"
     },
     boxTitle: {
         flexGrow: 2
@@ -112,7 +119,7 @@ const custom = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 18,
         marginBottom: 35,
-        backgroundColor: "#eeeeee",
+        backgroundColor: "#FF006670", // #F6630D // #FF006670
         borderRadius: 3
     }
 });

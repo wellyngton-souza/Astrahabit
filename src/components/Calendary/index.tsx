@@ -40,7 +40,7 @@ const layout = StyleSheet.create({
     },
     Text: {
         fontSize: 18,
-        paddingVertical: 30,
+        paddingVertical: 15,
         fontWeight: "bold"
     },
     Flex: {
