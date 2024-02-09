@@ -1,14 +1,15 @@
-import { useState } from "react";
 import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from "react-native";
+import totalTime from "../../utils/totalTime";
 
 interface ScheduledDateProps {
     name: string;
     color: string;
+    times: Time[];
+    taskSelected: string;
+    defineTask: (task: string) => void;
 }
 
-const ScheduledDate: React.FC<ScheduledDateProps> = ({ name, color }) =>{
-    const [taskOpen, setTaskOpen] = useState<Boolean>(false);
-
+const ScheduledDate: React.FC<ScheduledDateProps> = ({ name, color, times, taskSelected, defineTask }) =>{
     return(
         <View style={ layout.contentTask }>
             <View style={ layout.subContentTask }>
@@ -19,14 +20,23 @@ const ScheduledDate: React.FC<ScheduledDateProps> = ({ name, color }) =>{
             </View>
             <View style={ layout.subContentTask }>
                 <Text style={ layout.task }>
-                    0:00:00
+                    {
+                        totalTime(times.filter(item => item.name === name)[0].time)
+                    }
                 </Text>
                 <TouchableOpacity
-                    onPress={() => setTaskOpen(!taskOpen)}
+                    onPress={() => {
+                        if(name === taskSelected){
+                            defineTask("");
+                            return;
+                        }
+
+                        defineTask(name);
+                    }}
                 >
                     <Image
                         source={ require("../../../assets/app/Diamonds.png") }
-                        style={ [layout.icon, layout.iconLeft, { tintColor: taskOpen ? "#FF006670" : "black" }] }
+                        style={ [layout.icon, layout.iconLeft, { tintColor: name === taskSelected ? "#FF006670" : "black" }] }
                     />
                 </TouchableOpacity>
             </View>
@@ -34,7 +44,19 @@ const ScheduledDate: React.FC<ScheduledDateProps> = ({ name, color }) =>{
     );
 }
 
-const TimerComponent = () =>{
+interface Time{
+    name: string;
+    color: string;
+    time: number;
+}
+
+interface TimerTypes{
+    times: Time[];
+    defineTask: (task: string) => void;
+    taskSelected: string;
+}
+
+const TimerComponent: React.FC<TimerTypes> = ({ times, defineTask, taskSelected }) =>{
     return(
         <ScrollView>
             <View style={ [ layout.content, layout.subContainer ] }>
@@ -42,10 +64,10 @@ const TimerComponent = () =>{
                     Saturday
                 </Text>
                 <View>
-                    <ScheduledDate name="Atena" color="#26C3BA" />
-                    <ScheduledDate name="Astrahabit" color="#2649C3" />
-                    <ScheduledDate name="Manggih" color="#9B26C3" />
-                    <ScheduledDate name="100Points" color="#59C326" />
+                    <ScheduledDate name="Atena" color="#26C3BA" times={times} taskSelected={taskSelected} defineTask={defineTask} />
+                    <ScheduledDate name="Astrahabit" color="#2649C3" times={times} taskSelected={taskSelected} defineTask={defineTask} />
+                    <ScheduledDate name="Manggih" color="#9B26C3" times={times} taskSelected={taskSelected} defineTask={defineTask} />
+                    <ScheduledDate name="100Points" color="#59C326" times={times} taskSelected={taskSelected} defineTask={defineTask} />
                 </View>
             </View>
         </ScrollView>

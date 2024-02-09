@@ -1,13 +1,41 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import totalTime from "../../utils/totalTime";
 
 import Rodape from "../../components/Rodape";
 import TimerComponent from "../../components/Timer";
 
 import { StackTypes } from "../../routes";
+import { useEffect, useState } from "react";
 
 const Timer = () =>{
     const navigation = useNavigation<StackTypes>();
+
+    const [timedTask, setTimedTask] = useState("a");
+
+    const defineTask = (task: string) =>{
+        setTimedTask(task);
+    }
+
+    const [times, setTimes] = useState([
+        { name: "Atena", color: "#26C3BA", time: 1030 },
+        { name: "Astrahabit", color: "#2649C3", time: 2030 },
+        { name: "Manggih", color: "#9B26C3", time: 2030 },
+        { name: "100Points", color: "#59C326", time: 2030 }
+    ]);
+
+    useEffect(() =>{
+        const intervalId = setInterval(() => {
+            setTimes((prevTimes) =>{
+                    return prevTimes.map((item) =>
+                        item.name === timedTask ? { ...item, time: item.time + 1 } : item
+                    );
+                }
+            );
+        }, 1000);
+    
+        return () => clearInterval(intervalId);
+    },[timedTask]);
 
     return(
         <View style={ layout.container }>
@@ -35,10 +63,10 @@ const Timer = () =>{
                 </View>
                 <View style={ layout.Flex }>
                     <Text style={ layout.Text }>List View</Text>
-                    <Text style={ layout.Text }>0:00:00</Text>
+                    <Text style={ layout.Text }>{ totalTime(times.reduce((acc, timeObj) => acc + timeObj.time, 0)) }</Text>
                 </View>
             </View>
-            <TimerComponent />
+            <TimerComponent times={times} defineTask={defineTask} taskSelected={timedTask} />
             <Rodape screenSelect="timer" />
         </View>
     );   

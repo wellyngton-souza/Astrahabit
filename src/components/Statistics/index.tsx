@@ -13,13 +13,13 @@ const StatisticsComponent = () =>{
                 </Text>
                 <View style={ layout.Flex }>
                     <TouchableOpacity onPress={() => setTabSelect(1)}>
-                        <Text style={ layout.Title }>Week</Text>
+                        <Text style={ [layout.Title, tabSelect === 1 && layout.TitleSelected] }>Week</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => setTabSelect(2)}>
-                        <Text style={ layout.Title }>Year</Text>
+                        <Text style={ [layout.Title, tabSelect === 2 && layout.TitleSelected] }>Year</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => setTabSelect(3)}>
-                        <Text style={ layout.Title }>Global</Text>
+                        <Text style={ [layout.Title, tabSelect === 3 && layout.TitleSelected] }>Global</Text>
                     </TouchableOpacity>
                 </View>
                 {
@@ -140,6 +140,9 @@ const layout = StyleSheet.create({
         marginBottom: 35,
         fontWeight: "bold",
         color: "#FF0066"
+    },
+    TitleSelected: {
+        textDecorationLine: 'underline'
     },
     Flex: {
         display: "flex",
