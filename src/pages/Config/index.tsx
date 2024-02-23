@@ -29,8 +29,12 @@ const Config = () =>{
                     />
                 </View>
                 <View style={ custom.option  }>
-                    <Text style={ layout.Text }>Config 2</Text>
-                    <Text style={ layout.Text }>0:00:00</Text>
+                    <Text style={ layout.Text }>Vanessa Lopes</Text>
+                    <Text style={ layout.Text }>Perfil</Text>
+                    <Text style={ layout.Text }>Tema escuro</Text>
+                    <Text style={ layout.Text }>Updates</Text>
+                    <Text style={ layout.Text }>Ajuda</Text>
+                    <Text style={ layout.Text }>Quem</Text>
                 </View>
                 <View style={ custom.sair }>
                     <TouchableOpacity
@@ -100,7 +104,10 @@ const custom = StyleSheet.create({
         marginBottom: 35
     },
     option: {
-        flexGrow: 1
+        flexGrow: 1,
+        display: "flex",
+        flexDirection: "column",
+        gap: 20
     },
     sair: {
         marginBottom: 35,

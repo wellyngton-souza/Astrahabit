@@ -12,6 +12,7 @@ const Timer = () =>{
     const navigation = useNavigation<StackTypes>();
 
     const [timedTask, setTimedTask] = useState("a");
+    const [editTask, setEditTask] = useState(false);
 
     const defineTask = (task: string) =>{
         setTimedTask(task);
@@ -23,6 +24,14 @@ const Timer = () =>{
         { name: "Manggih", color: "#9B26C3", time: 2030 },
         { name: "100Points", color: "#59C326", time: 2030 }
     ]);
+
+    const addTimes = () =>{
+        setEditTask(!editTask);
+    }
+
+    const deleteTask = (taskToDelete: { name: String, color: String, time: Number }) =>{
+        setTimes(prevTimes => prevTimes.filter(task => task !== taskToDelete));
+    }
 
     useEffect(() =>{
         const intervalId = setInterval(() => {
@@ -47,10 +56,12 @@ const Timer = () =>{
                             source={ require("../../../assets/app/Bookmark.png") }
                             style={ [layout.icon, custom.iconLeft] }
                         />
-                        <Image
-                            source={ require("../../../assets/app/ExternalLink.png") }
-                            style={ [layout.icon, custom.iconLeft] }
-                        />
+                        <TouchableOpacity onPress={addTimes}>
+                            <Image
+                                source={ require("../../../assets/app/ExternalLink.png") }
+                                style={ [layout.icon, custom.iconLeft] }
+                            />
+                        </TouchableOpacity>
                         <TouchableOpacity
                             onPress={() => navigation.navigate("Config")}
                         >
@@ -66,7 +77,39 @@ const Timer = () =>{
                     <Text style={ layout.Text }>{ totalTime(times.reduce((acc, timeObj) => acc + timeObj.time, 0)) }</Text>
                 </View>
             </View>
-            <TimerComponent times={times} defineTask={defineTask} taskSelected={timedTask} />
+            {
+                editTask ?    
+                    <TimerComponent times={times} defineTask={defineTask} taskSelected={timedTask} />
+                :
+                <View style={ custom.afterComponent }>
+                    <Text style={ layout.Text }>Editar Tasks</Text>
+                    <View style={ [custom.afterComponent, { paddingHorizontal: 0 }] }>
+                        {
+                            times.map((item) => (
+                                <View style={ layout.Flex }>
+                                    <Text style={ layout.Text }>{item.name}</Text>
+                                    <View style={ [layout.Flex, layout.flexGap] }>
+                                        <View style={ custom.buttonCorrect }></View>
+                                        <TouchableOpacity onPress={() => deleteTask(item)}>
+                                            <View style={ custom.buttonIncorrect }></View>
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                            ))
+                        }
+                    </View>
+                    <TouchableOpacity>
+                        <View style={ custom.buttonGray }>
+                            <Text style={ layout.Text }>Editar</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <View style={ custom.buttonGray }>
+                            <Text style={ layout.Text }>Adicionar</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            }
             <Rodape screenSelect="timer" />
         </View>
     );   
@@ -94,6 +137,9 @@ const layout = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between"
     },
+    flexGap: {
+        gap: 10
+    },
     icon: {
         width: 35,
         height: 35
@@ -114,6 +160,32 @@ const custom = StyleSheet.create({
     iconLeft: {
         marginLeft: 10
     },
+    flexGrow: {
+        flexGrow: 1
+    },
+    afterComponent: {
+        flexGrow: 1,
+        padding: 35,
+        display: "flex",
+        flexDirection: "column",
+        gap: 30
+    },
+    buttonGray: {
+        backgroundColor: "#9999",
+        padding: 20
+    },
+    buttonCorrect: {
+        width: 50,
+        height: 50,
+        borderRadius: 40,
+        backgroundColor: "green"
+    },
+    buttonIncorrect: {
+        width: 50,
+        height: 50,
+        borderRadius: 40,
+        backgroundColor: "red"
+    }
 });
 
 export default Timer;

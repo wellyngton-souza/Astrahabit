@@ -64,10 +64,11 @@ const TimerComponent: React.FC<TimerTypes> = ({ times, defineTask, taskSelected 
                     Saturday
                 </Text>
                 <View>
-                    <ScheduledDate name="Atena" color="#26C3BA" times={times} taskSelected={taskSelected} defineTask={defineTask} />
-                    <ScheduledDate name="Astrahabit" color="#2649C3" times={times} taskSelected={taskSelected} defineTask={defineTask} />
-                    <ScheduledDate name="Manggih" color="#9B26C3" times={times} taskSelected={taskSelected} defineTask={defineTask} />
-                    <ScheduledDate name="100Points" color="#59C326" times={times} taskSelected={taskSelected} defineTask={defineTask} />
+                    {
+                        times.map((item) => (
+                            <ScheduledDate name={item.name} color={item.color} times={times} taskSelected={taskSelected} defineTask={defineTask} />        
+                        ))
+                    }
                 </View>
             </View>
         </ScrollView>
